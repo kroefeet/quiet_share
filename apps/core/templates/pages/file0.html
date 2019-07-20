@@ -36,8 +36,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
-  
-   
+
+
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="login.html">Login</a>
           </li>
@@ -54,25 +54,40 @@
   <section class="page-section" id="services">
     <div class="container pt-2">
 
-      
-      
+
+
       <li class=" alert alert-success">
           <div class="alert alert-success">
-              <strong>Upload success.</strong> 
+              <strong>Upload success.</strong>
               Here is the link to your file:</div>
-              <span class="lead"><a target="_blank" href="https://file.io/8CdZ4D">https://file.io/8CdZ4D</a> 
-                <button class="js-textareacopybtn" style="vertical-align:top;">Copy Link</button> 
+              <span class="lead"><a target="_blank" href="https://file.io/8CdZ4D">https://file.io/8CdZ4D</a>
+                <button class="js-textareacopybtn" style="vertical-align:top;">Copy Link</button>
                 <button class="js-addanotherbtn" style="vertical-align:top;">Upload Another</button><br><br></span></li>
-      
+
 
 
 
 
   </section>
 
+  <div>
+      <h2>Upload a file here</h2>
+      <p>Notes:</p>
+      <ul>
+          <li>The text field is optional and will be seen by the user receiving the link</li>
+          <li>All links expire in 7 days</li>
+          <li>Username must be a valid username</li>
+      </ul>
+  <form action="." method="POST">
+      <div class="card-body">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button class="btn btn-success btn-lg">Send File!</button>
+      </div>
 
 
- 
+
+
 
   <!-- Footer -->
   <footer class="bg-light py-5">
