@@ -22,7 +22,23 @@ def home(request):
         'example_context_variable': 'Change me.',
     }
 
-    return render(request, 'pages/home.html', context)
+    return render(request, 'pages/index.html', context)
+
+def login(request):
+
+    context = {
+
+    }
+
+    return render(request, 'pages/login.html', context)
+
+def signup(request):
+
+    context = {
+
+    }
+
+    return render(request, 'pages/signup.html', context)
 
 def about(request):
     context = {
@@ -59,4 +75,4 @@ def file(request):
     context = {
         'form': form,
     }
-    return render(request, 'pages/file.html', context)
+    return render(request, 'pages/file0.html', context)
