@@ -7,6 +7,7 @@ class FilePost(models.Model):
     link = models.CharField(max_length=150)
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+    expiry_date = models.DateTimeField()
 
     # def __str__(self):
     #     return self.username + ' said ' + self.text

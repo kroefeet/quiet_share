@@ -25,9 +25,11 @@ def home(request):
     return render(request, 'pages/index.html', context)
 
 def user_page(request):
+    links = FilePost.objects.order_by('created')
     context = {
-
+        'links': links,
     }
+
     return render(request, 'pages/user_page.html', context)
 
 
