@@ -24,28 +24,6 @@ def home(request):
 
     return render(request, 'pages/index.html', context)
 
-def login(request):
-
-    context = {
-
-    }
-
-    return render(request, 'pages/login.html', context)
-
-def signup(request):
-
-    context = {
-
-    }
-
-    return render(request, 'pages/signup.html', context)
-
-def about(request):
-    context = {
-    }
-
-    return render(request, 'pages/about.html', context)
-
 def file(request):
     if request.method == 'POST':
                 # Create a form instance and populate it with data from the request

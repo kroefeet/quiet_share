@@ -4,16 +4,22 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django import forms
 
 from apps.accounts.forms import UserEditForm, SignupForm
 from apps.accounts.models import User
+
+class SignupForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password']
 
 def log_in(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             login(request, form.get_user())
-            return redirect('home')
+            return redirect('/')
     else:
         form = AuthenticationForm()
 
@@ -32,7 +38,7 @@ def sign_up(request):
             # Log-in the user right away
             messages.success(request, 'Account created successfully. Welcome!')
             login(request, user)
-            return redirect('home')
+            return redirect('/')
     else:
         form = SignupForm()
 
@@ -41,19 +47,10 @@ def sign_up(request):
     }
     return render(request, 'accounts/signup.html', context)
 
-
 def logout_view(request):
     logout(request)
     messages.success(request, 'Logged out.')
     return redirect('home')
-
-
-def view_all_users(request):
-    all_users = User.objects.all()
-    context = {
-        'users': all_users,
-    }
-    return render(request, 'accounts/view_all_users.html', context)
 
 
 def view_profile(request, username):
@@ -84,5 +81,3 @@ def edit_profile(request):
         'form': form,
     }
     return render(request, 'accounts/edit_profile.html', context)
-
-
