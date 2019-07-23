@@ -1,58 +1,13 @@
 {% extends "base.html" %}
 {% load bootstrap4 %}
 
-{% block content %}
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-shrink navbar-dark fixed-top navbar-scrolled" id="mainNav">
+{% block nav %}<nav class="navbar navbar-expand-lg navbar-shrink navbar-dark fixed-top navbar-scrolled" id="mainNav">
   <div class="container">
-    <a class="navbar-brand" href="{% url "home" %}"><img src="../../static/img/quietsharenav.png" width="150px"></a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto my-2 my-lg-0">
+    <a class="navbar-brand js-scroll-trigger" href="{% url "home" %}"><img src="../../static/img/quietsharenav.png" width="150px" /></a>
+{% endblock nav %}
 
-
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="{% url "login" %}">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="{% url "signup" %}">Signup</a>
-        </li>
-
-        <!-- NEED TO TEST WHEN LOGGED IN -->
-        {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/users/{{ user.username }}/">{{ user }}</a>
-          </li>
-        {% endif %}
-
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- Services Section -->
-<!-- <section class="page-section" id="services">
-  <div class="row">
-  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-      <div class="card card-signin my-5">
-          <div class="card-body">
-              <h5 class="card-title text-center">Log In</h5>
-              <form class="form-signin" method="POST">
-                  <input type="hidden" name="csrfmiddlewaretoken" value="GQDTLw6aXzqvULgn6xQuBgrMpKqoF1ALB8U7DphPrrHjexmfjNVi6DrklT39R9aa">
-                  <div class="form-group"><label for="id_username">Username</label><input type="text" name="username" autofocus class="form-control" placeholder="Username" title="" required id="id_username"></div>
-<div class="form-group"><label for="id_password">Password</label><input type="password" name="password" class="form-control" placeholder="Password" title="" required id="id_password"></div>
-                  <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Log In</button>
-              </form>
-          </div>
-      </div>
-  </div>
-</div>
-
-</section> -->
+{% block content %}
 
 {% include "accounts/form_snippet.html" with form_title="Log In" %}
-
 
 {% endblock content %}

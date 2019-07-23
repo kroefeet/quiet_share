@@ -38,7 +38,9 @@ def sign_up(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
 
             # Log-in the user right away
             messages.success(request, 'Account created successfully. Welcome!')

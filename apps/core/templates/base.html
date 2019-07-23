@@ -29,6 +29,53 @@
 
 <body id="page-top">
 
+  <!-- Navigation -->
+{% block nav %}
+  <!-- <div class="container">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../../static/img/quietsharenav.png" width="150px" /></a> -->
+    {% endblock nav %}
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto my-2 my-lg-0">
+
+<!--
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="{% url "login" %}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="{% url "signup" %}">Signup</a>
+        </li> -->
+
+        <!-- NEED TO TEST WHEN LOGGED IN -->
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/users/{{ user.username }}/">Hello, {{ user }}!</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href=""{% url "home" %}"">Upload</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{% url "logout" %}">Log Out</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{% url "login" %}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{% url "signup" %}">Sign Up</a>
+          </li>
+        {% endif %}
+
+
+    </li>
+</ul>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 
 
   {% block content %}
