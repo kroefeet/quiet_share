@@ -24,6 +24,13 @@ def home(request):
 
     return render(request, 'pages/index.html', context)
 
+def user_page(request):
+    context = {
+
+    }
+    return render(request, 'pages/user_page.html', context)
+
+
 def file(request):
     if request.method == 'POST':
                 # Create a form instance and populate it with data from the request
