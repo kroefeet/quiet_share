@@ -28,6 +28,11 @@ def log_in(request):
     }
     return render(request, 'accounts/login.html', context)
 
+def log_out(request):
+    logout(request)
+    return redirect('/')
+
+
 
 def sign_up(request):
     if request.method == 'POST':
