@@ -35,23 +35,6 @@
 
 
 <!-- Services Section -->
-<section class="page-section" id="services">
-  <div class="row">
-  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-      <div class="card card-signin my-5">
-          <div class="card-body">
-              <h5 class="card-title text-center">NEED TO CREATE LOG IN FORM</h5>
-              <form class="form-signin" method="POST">
-                  <input type="hidden" name="csrfmiddlewaretoken" value="GQDTLw6aXzqvULgn6xQuBgrMpKqoF1ALB8U7DphPrrHjexmfjNVi6DrklT39R9aa">
-                  <div class="form-group"><label for="id_username">Username</label><input type="text" name="username" autofocus class="form-control" placeholder="Username" title="" required id="id_username"></div>
-<div class="form-group"><label for="id_password">Password</label><input type="password" name="password" class="form-control" placeholder="Password" title="" required id="id_password"></div>
-                  <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Log In</button>
-              </form>
-          </div>
-      </div>
-  </div>
-</div>
-
-
+{% include "accounts/form_snippet.html" with form_title="Sign Up" %}
 
 {% endblock content %}
