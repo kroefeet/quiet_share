@@ -20,12 +20,25 @@
           <a class="nav-link js-scroll-trigger" href="{% url "signup" %}">Signup</a>
         </li>
 
-        <!-- NEED TO TEST WHEN LOGGED IN -->
-        {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/users/{{ user.username }}/">{{ user }}</a>
-          </li>
-        {% endif %}
+        <!--Navigation -->
+           {% if user.is_authenticated %}
+             <li class="nav-item">
+               <a class="nav-link js-scroll-trigger" href="/users/{{ user.username }}/">Hello, {{ user }}!</a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link js-scroll-trigger" href=""{% url "home" %}"">Upload</a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link js-scroll-trigger" href="{% url "logout" %}">Log Out</a>
+             </li>
+           {% else %}
+             <li class="nav-item">
+               <a class="nav-link js-scroll-trigger" href="{% url "login" %}">Login</a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link js-scroll-trigger" href="{% url "signup" %}">Sign Up</a>
+             </li>
+           {% endif %}
 
       </ul>
     </div>
@@ -40,48 +53,34 @@
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
             <div class="card-body">
-                <h5 class="card-title text-center">{{ user.name }}'s links</h5>
+
+                <h5 class="card-title text-center">Username's links</h5>
 
                 <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
+                      <th scope="col">Link</th>
+                      <th scope="col">Expiration Date</th>
+                      <th scope="col">Message</th>
                     </tr>
                   </thead>
                   <tbody>
+                      {% for link in links %}
                     <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
+
+                      <td><a href='{{ link.link }}' target="_blank">Download</td>
+                      <td>{{ link.created|date:"M d, Y" }}</td>
+                      <td>{{ link.text }}</td>
+
                     </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td colspan="2">Larry the Bird</td>
-                      <td>@twitter</td>
-                    </tr>
-                  </tbody>
+                    {% endfor %}
+                </tbody>
                 </table>
 
+
+
             </div>
-            <div>
-              <p>Notes:</p>
-              <ul>
-                  <li>The text field is optional and will be seen by the user receiving the link</li>
-                  <li>All links expire in 7 days</li>
-                  <li>Username must be a valid username</li>
-              </ul>
             </div>
-        </div>
     </div>
   </div>
 
