@@ -47,7 +47,7 @@ def file(request):
         filepost = FilePost.objects.create(
             username=request.POST['username'],
             text=text,
-            link = link,
+            link = link, 
         )
 
             # As soon as our new user is created, we make this user be
