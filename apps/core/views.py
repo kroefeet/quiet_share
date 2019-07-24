@@ -24,27 +24,14 @@ def home(request):
 
     return render(request, 'pages/index.html', context)
 
-def login(request):
-
+def user_page(request):
+    links = FilePost.objects.order_by('created')
     context = {
-
+        'links': links,
     }
 
-    return render(request, 'pages/login.html', context)
+    return render(request, 'pages/user_page.html', context)
 
-def signup(request):
-
-    context = {
-
-    }
-
-    return render(request, 'pages/signup.html', context)
-
-def about(request):
-    context = {
-    }
-
-    return render(request, 'pages/about.html', context)
 
 def file(request):
     if request.method == 'POST':
@@ -60,7 +47,7 @@ def file(request):
         filepost = FilePost.objects.create(
             username=request.POST['username'],
             text=text,
-            link = link,
+            link = link, 
         )
 
             # As soon as our new user is created, we make this user be

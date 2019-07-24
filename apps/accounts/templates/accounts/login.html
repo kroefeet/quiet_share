@@ -1,8 +1,13 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load bootstrap4 %}
+
+{% block nav %}<nav class="navbar navbar-expand-lg navbar-shrink navbar-dark fixed-top navbar-scrolled" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand js-scroll-trigger" href="{% url "home" %}"><img src="../../static/img/quietsharenav.png" width="150px" /></a>
+{% endblock nav %}
 
 {% block content %}
 
 {% include "accounts/form_snippet.html" with form_title="Log In" %}
 
-{% endblock %}
+{% endblock content %}
