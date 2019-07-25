@@ -36,7 +36,7 @@ def home(request):
         dt_now = datetime.datetime.now()
 
         filepost = FilePost.objects.create(
-            username=request.POST['username'],
+            username=request.POST['recipient_username'],
             text=text,
             link = link,
             expiry_date = dt_now + datetime.timedelta(days=7),
