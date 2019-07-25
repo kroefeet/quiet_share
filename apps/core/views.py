@@ -42,7 +42,7 @@ def home(request):
             expiry_date = dt_now + datetime.timedelta(days=7),
         )
 
-        return redirect('/accounts/login')
+        return redirect('/')
 
     else:
         # if a GET we'll create a blank form
