@@ -54,7 +54,7 @@
         <div class="card card-signin my-5">
             <div class="card-body">
 
-                <h5 class="card-title text-center">Username's links</h5>
+                <h5 class="card-title text-center">{{ user.username }}'s links</h5>
 
                 <table class="table table-hover">
                   <thead>
@@ -67,10 +67,11 @@
                   <tbody>
                       {% for link in links %}
                     <tr>
-
+                        {% if user.username %}
                       <td><a href='{{ link.link }}' target="_blank">Download</td>
-                      <td>{{ link.created|date:"M d, Y" }}</td>
+                      <td>{{ link.expiry_date|date:"M d, Y" }}</td>
                       <td>{{ link.text }}</td>
+                        {% endif %}
 
                     </tr>
                     {% endfor %}

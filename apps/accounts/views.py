@@ -62,6 +62,8 @@ def logout_view(request):
 
 def view_profile(request, username):
     user = User.objects.get(username=username)
+    links = FilePost.objects.filter(username=user)
+
 
     if request.user == user:
         is_viewing_self = True
@@ -70,9 +72,9 @@ def view_profile(request, username):
 
     context = {
         'user': user,
-        'is_viewing_self': is_viewing_self,
+        'links': links,
     }
-    return render(request, 'accounts/profile_page.html', context)
+    return render(request, 'pages/user_page.html', context)
 
 @login_required
 def edit_profile(request):

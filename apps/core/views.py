@@ -7,6 +7,9 @@ from py3wetransfer import Py3WeTransfer
 import os
 wetransfer_api_key = os.environ["WeTransfer_API_KEY"]
 from .models import FilePost
+from apps.accounts.models import User
+import datetime
+
 
 # Two example views. Change or delete as necessary.
 
@@ -24,12 +27,20 @@ def home(request):
 
     return render(request, 'pages/index.html', context)
 
-def user_page(request):
-    links = FilePost.objects.order_by('created')
+def user_page(request, username):
+    user = User.objects.get(username=username)
+    links = FilePost.objects.filter(username=user)
+
+
+    if request.user == user:
+        is_viewing_self = True
+    else:
+        is_viewing_self = False
+
     context = {
+        'user': user,
         'links': links,
     }
-
     return render(request, 'pages/user_page.html', context)
 
 
@@ -43,11 +54,13 @@ def file(request):
         filename=request.POST['filename']
         text=request.POST['text']
         link = x.upload_file(filename, text)
+        dt_now = datetime.datetime.now()
 
         filepost = FilePost.objects.create(
             username=request.POST['username'],
             text=text,
-            link = link, 
+            link = link,
+            expiry_date = dt_now + datetime.timedelta(days=7),
         )
 
             # As soon as our new user is created, we make this user be
