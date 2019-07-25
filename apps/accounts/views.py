@@ -74,7 +74,7 @@ def view_profile(request, username):
         'user': user,
         'links': links,
     }
-    return render(request, 'pages/user_page.html', context)
+    return render(request, 'accounts/user_page.html', context)
 
 @login_required
 def edit_profile(request):
