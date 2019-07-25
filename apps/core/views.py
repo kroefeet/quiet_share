@@ -16,19 +16,21 @@ import datetime
 class QuietShareForm(forms.Form):
     text = forms.CharField(widget=forms.Textarea)
     username = forms.CharField(max_length=30)
-    filename = forms.FileField(label = "Select a file")
+    filename = forms.FileField(label = "Select a file", required=False)
 
 # Two example views. Change or delete as necessary.
 def home(request):
     if request.method == 'POST':
-                # Create a form instance and populate it with data from the request
+        # Create a form instance and populate it with data from the request
         form = QuietShareForm(request.POST)
         x = Py3WeTransfer(wetransfer_api_key)
 
-    #        if form.is_valid():
         filename=request.POST['filename']
         text=request.POST['text']
-        link = x.upload_file(filename, text)
+        if not filename:
+            link = ''
+        else:
+            link = x.upload_file(filename, text)
         dt_now = datetime.datetime.now()
 
         filepost = FilePost.objects.create(
@@ -38,9 +40,6 @@ def home(request):
             expiry_date = dt_now + datetime.timedelta(days=7),
         )
 
-            # As soon as our new user is created, we make this user be
-            # instantly "logged in"
-            #auth.login(request, user)
         return redirect('/')
 
     else:
