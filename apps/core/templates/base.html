@@ -53,7 +53,7 @@
         <!-- NEED TO TEST WHEN LOGGED IN -->
         {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/users/{{ user.username }}/">Hello, {{ user }}!</a>
+            <a class="nav-link js-scroll-trigger" href="/user/{{ user.username }}/">Hello, {{ user }}!</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href=""{% url "home" %}"">Upload</a>

@@ -20,9 +20,35 @@ class QuietShareForm(forms.Form):
 
 # Two example views. Change or delete as necessary.
 def home(request):
+    if request.method == 'POST':
+                # Create a form instance and populate it with data from the request
+        form = QuietShareForm(request.POST)
+        x = Py3WeTransfer(wetransfer_api_key)
+
+    #        if form.is_valid():
+        filename=request.POST['filename']
+        text=request.POST['text']
+        link = x.upload_file(filename, text)
+        dt_now = datetime.datetime.now()
+
+        filepost = FilePost.objects.create(
+            username=request.POST['username'],
+            text=text,
+            link = link,
+            expiry_date = dt_now + datetime.timedelta(days=7),
+        )
+
+            # As soon as our new user is created, we make this user be
+            # instantly "logged in"
+            #auth.login(request, user)
+        return redirect('/')
+
+    else:
+        # if a GET we'll create a blank form
+        form = QuietShareForm()
 
     context = {
-        'example_context_variable': 'Change me.',
+        'form': form,
     }
 
     return render(request, 'pages/index.html', context)
