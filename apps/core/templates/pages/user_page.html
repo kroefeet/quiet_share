@@ -1,76 +1,55 @@
 {% extends "base.html" %}
 
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand js-scroll-trigger" href="{% url "home" %}"><img src="../../static/img/quietsharenav.png" width="150px" /></a>
+{% endblock nav %}
+
 {% block content %}
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-shrink navbar-dark fixed-top navbar-scrolled" id="mainNav">
-  <div class="container">
-    <a class="navbar-brand" href="{% url "home" %}"><img src="../../static/img/quietsharenav.png" width="150px"></a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto my-2 my-lg-0">
-
-
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="{% url "login" %}">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="{% url "signup" %}">Signup</a>
-        </li>
-
-        <!--Navigation -->
-         {% if user.is_authenticated %}
-           <li class="nav-item">
-             <a class="nav-link js-scroll-trigger" href="/users/{{ user.username }}/">Hello, {{ user }}!</a>
-           </li>
-           <li class="nav-item">
-             <a class="nav-link js-scroll-trigger" href=""{% url "home" %}"">Upload</a>
-           </li>
-           <li class="nav-item">
-             <a class="nav-link js-scroll-trigger" href="{% url "logout" %}">Log Out</a>
-           </li>
-         {% else %}
-           <li class="nav-item">
-             <a class="nav-link js-scroll-trigger" href="{% url "login" %}">Login</a>
-           </li>
-           <li class="nav-item">
-             <a class="nav-link js-scroll-trigger" href="{% url "signup" %}">Sign Up</a>
-           </li>
-         {% endif %}
-
-      </ul>
-    </div>
-  </div>
-</nav>
 
 
 
-  <!-- Services Section -->
-  <section class="page-section" id="services">
+
+  <!-- User links -->
+  <div class="dashboard">
+
+
+  <section class="page-section" >
     <div class="row">
-    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <div class="col-sm-9 col-md-9 col-lg-9 mx-auto">
         <div class="card card-signin my-5">
             <div class="card-body">
 
-                <h5 class="card-title text-center">{{ user.username }}'s links</h5>
+                <h5 class="card-title text-center" id="dashboard">{{ user.username }}'s links</h5>
 
                 <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th scope="col">Link</th>
-                      <th scope="col">Expiration Date</th>
+                      <th scope="col">Expiration Dat</th>
                       <th scope="col">Message</th>
+                      <th scope="col">Link</th>
                     </tr>
                   </thead>
                   <tbody>
                       {% for link in links %}
                     <tr>
                         {% if user.username %}
-                      <td><a href='{{ link.link }}' target="_blank">Download</td>
-                      <td>{{ link.expiry_date|date:"M d, Y" }}</td>
-                      <td>{{ link.text }}</td>
+                            {% if link.link == '' %}
+                                <td>{{ link.expiry_date|date:"M d, Y" }}</td>
+                                <td>{{ link.text }}</td>
+                                <td></td>
+
+
+                            {% else %}
+                                <td>{{ link.expiry_date|date:"M d, Y" }}</td>
+                                <td>{{ link.text }}</td>
+                                <td><a href='{{ link.link }}' target="_blank">Download</td>
+
+
+                            {% endif %}
+
                         {% endif %}
 
                     </tr>
@@ -78,12 +57,15 @@
                 </tbody>
                 </table>
 
-
+                <h5 class="card-title text-center" id="dashboard">Delete account for {{ user.username }}?</h5>
+                {% if user.username %}
+                    <a href="/delete-profile/{{ user.username }}/" class="btn btn-link">Delete Profile</a>
+                {% endif %}
 
             </div>
             </div>
     </div>
   </div>
-
+  </div>
 
   {% endblock content %}

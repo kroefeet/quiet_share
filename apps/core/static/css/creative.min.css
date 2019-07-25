@@ -22,7 +22,7 @@
 
  background-color: #27b7d7;
 		color: #d1e5f9;
-		padding: 4.5em 0 2.5em 0 ;
+		padding: 6em 0 2.5em 0 ;
 		-moz-align-items: center;
 		-webkit-align-items: center;
 		-ms-align-items: center;
@@ -39,12 +39,26 @@
 		background-position: top left, center center;
 		background-attachment: fixed, fixed;
 		background-size: auto, cover;
-		height: 100vh;
+
 		min-height: 35em;
 
 
  }
 
+ .dashboard{
+
+        background-color: #27b7d7;
+        background-size: cover;
+		color: #000;
+		padding: 1em 0 1em 0 ;
+		height: 100%;
+
+ }
+
+.form-section{
+    padding:4.5rem 0;
+
+}
 
 #header input[type="submit"],
 		#header input[type="reset"],

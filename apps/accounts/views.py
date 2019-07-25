@@ -8,6 +8,7 @@ from django import forms
 
 from apps.accounts.forms import UserEditForm, SignupForm
 from apps.accounts.models import User
+from apps.core.models import FilePost
 
 class SignupForm(forms.ModelForm):
     class Meta:
@@ -58,35 +59,3 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'Logged out.')
     return redirect('home')
-
-
-def view_profile(request, username):
-    user = User.objects.get(username=username)
-    links = FilePost.objects.filter(username=user)
-
-
-    if request.user == user:
-        is_viewing_self = True
-    else:
-        is_viewing_self = False
-
-    context = {
-        'user': user,
-        'links': links,
-    }
-    return render(request, 'accounts/user_page.html', context)
-
-@login_required
-def edit_profile(request):
-    if request.method == 'POST':
-        form = UserEditForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    else:
-        form = UserEditForm(instance=request.user)
-
-    context = {
-        'form': form,
-    }
-    return render(request, 'accounts/edit_profile.html', context)

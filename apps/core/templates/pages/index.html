@@ -1,43 +1,13 @@
 {% extends "base.html" %}
 
 
-{% block nav %}<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
   <div class="container">
-    <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../../static/img/quietsharenav.png" width="150px" /></a>
+    <a class="navbar-brand js-scroll-trigger" href="{% url "home" %}"><img src="../../static/img/quietsharenav.png" width="150px" /></a>
 {% endblock nav %}
 
-<!-- Navigation -->
-<!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-  <div class="container">
-    <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../../static/img/quietsharenav.png" width="150px" /></a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto my-2 my-lg-0">
 
-
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="{% url "login" %}">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="{% url "signup" %}">Signup</a>
-        </li> -->
-
-        <!-- NEED TO TEST WHEN LOGGED IN -->
-        <!-- {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/users/{{ user.username }}/">{{ user }}</a>
-          </li>
-        {% endif %}
-
-
-    </li>
-</ul>
-      </ul>
-    </div>
-  </div>
-</nav> -->
 
 {% block content %}
   <!-- Masthead -->
@@ -49,15 +19,21 @@
           <hr class="divider my-4">
         </div>
         <div class="col-lg-8 align-self-baseline">
-          <p class="text-white-75 font-weight-light mb-5">Share a file with others quickly and discretly</p>
 
-          <form action="." method="POST">
-             <div class="form-group">
-                  {% csrf_token %}
-                  {{ form.as_p }}
-                  <button class="btn btn-primary btn-xl js-scroll-trigger file-upload-wrapper button">Send File!</button>
-              </div>
-          </form>
+<!-- Form -->
+          <div class="card bg-dark mb-6" >
+            <div class="card-header">Share a file or text with others quickly and discretly</div>
+            <div class="card-body">
+                <form action="." method="POST">
+                   <div class="form-group">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn btn-primary btn-xl js-scroll-trigger file-upload-wrapper button">Send File!</button>
+                    </div>
+                </form>
+            </div>
+          </div>
+
 
      </div>
       </div>

@@ -42,21 +42,12 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto my-2 my-lg-0">
 
-<!--
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="{% url "login" %}">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="{% url "signup" %}">Signup</a>
-        </li> -->
-
-        <!-- NEED TO TEST WHEN LOGGED IN -->
         {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/user/{{ user.username }}/">Hello, {{ user }}!</a>
+            <a class="nav-link js-scroll-trigger" href="/{{ user.username }}/">Hello, {{ user }}!</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href=""{% url "home" %}"">Upload</a>
+            <a class="nav-link js-scroll-trigger" href="{% url "home" %}">Upload</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{% url "logout" %}">Log Out</a>
