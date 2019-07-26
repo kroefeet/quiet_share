@@ -45,6 +45,18 @@
 
  }
 
+ .sml-logo {
+-webkit-filter:none;
+filter:none;
+}
+
+.lrg-logo{
+
+  -webkit-filter:brightness(5);
+  filter:brightness(5);
+
+}
+
  .dashboard{
 
         background-color: #27b7d7;
