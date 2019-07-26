@@ -60,6 +60,13 @@
 
 }
 
+.index_form p{
+    text-align:justify;
+    padding-left: 5em;
+
+}
+
+
 #header input[type="submit"],
 		#header input[type="reset"],
 		#header input[type="button"],

@@ -23,12 +23,12 @@
 <!-- Form -->
           <div class="card bg-dark mb-6" >
             <div class="card-header">Share a file or text with others quickly and discretly</div>
-            <div class="card-body">
+            <div class="card-body index_form">
                 <form action="." method="POST">
                    <div class="form-group">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button class="btn btn-primary btn-xl js-scroll-trigger file-upload-wrapper button">Send File!</button>
+                        <button class="btn btn-primary btn-xl js-scroll-trigger file-upload-wrapper button">Send!</button>
                     </div>
                 </form>
             </div>

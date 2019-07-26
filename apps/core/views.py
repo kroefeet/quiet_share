@@ -16,8 +16,8 @@ import datetime
 # Two example views. Change or delete as necessary.
 
 class QuietShareForm(forms.Form):
-    text = forms.CharField(widget=forms.Textarea)
-    recipient_username = forms.CharField(max_length=30)
+    text = forms.CharField(label = "Message", widget=forms.TextInput)
+    recipient_username = forms.CharField(widget=forms.TextInput)
     filename = forms.FileField(label = "Select a file", required=False)
 
 # Two example views. Change or delete as necessary.
