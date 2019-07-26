@@ -26,24 +26,6 @@
     offset: 75
   });
 
-
-//Logo change
-   if (scroll >= 105) {
-      if(!logo.hasClass("sml-logo")) {
-        logo.hide();
-        logo.removeClass('lrg-logo').addClass("sml-logo").fadeIn( "slow");
-      }
-    } else {
-      if(!logo.hasClass("lrg-logo")) {
-        logo.hide();
-        logo.removeClass("sml-logo").addClass('lrg-logo').fadeIn( "slow");
-      }
-    }
-
-});
-});
-
-
   // Collapse Navbar
   var navbarCollapse = function() {
     if ($("#mainNav").offset().top > 100) {
@@ -56,6 +38,24 @@
   navbarCollapse();
   // Collapse the navbar when page is scrolled
   $(window).scroll(navbarCollapse);
+
+  $(function() { var logo = $(".lrg-logo"); $(window).scroll(function() {
+var scroll = $(window).scrollTop();
+
+    if (scroll >= 20) {
+      if(!logo.hasClass("sml-logo")) {
+        logo.hide();
+        logo.removeClass('lrg-logo').addClass("sml-logo").fadeIn( "fast");
+      }
+    } else {
+      if(!logo.hasClass("lrg-logo")) {
+        logo.hide();
+        logo.removeClass("sml-logo").addClass('lrg-logo').fadeIn( "fast");
+      }
+    }
+
+});
+});
 
   // Magnific popup calls
   $('#portfolio').magnificPopup({
