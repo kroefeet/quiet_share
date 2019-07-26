@@ -12,6 +12,7 @@ from apps.accounts.models import User
 from apps.core.models import FilePost
 
 class SignupForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = User
         fields = ['username', 'password']
@@ -60,7 +61,7 @@ def sign_up(request):
     }
     return render(request, 'accounts/signup.html', context)
 
-def logout_view(request):
-    logout(request)
-    messages.success(request, 'Logged out.')
-    return redirect('home')
+# def logout_view(request):
+#     logout(request)
+#     messages.success(request, 'Logged out.')
+#     return redirect('home')
