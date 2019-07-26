@@ -22,3 +22,16 @@ class User(AbstractUser):
 
         return GRAVATAR_URL % (digest, size_str)
 
+
+
+class Meta:
+    model = User
+    fields = ["username", "password"]
+
+def __init__(self, *args, **kwargs):
+    # first call the 'real' __init__()
+    super(LoginForm, self).__init__(*args, **kwargs)
+    # then do extra stuff:
+    self.fields['username'].help_text = ''
+    self.fields['password'].widget = forms.PasswordInput(attrs={'placeholder': ''})
+    self.fields['password'].widget.attrs['class'] = 'form-control'

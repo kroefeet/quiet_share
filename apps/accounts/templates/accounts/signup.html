@@ -1,14 +1,28 @@
 {% extends "base.html" %}
-{% load static i18n %}
 
-{% block nav %}<nav class="navbar navbar-expand-lg navbar-shrink navbar-dark fixed-top navbar-scrolled" id="mainNav">
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-scrolled py-3" id="mainNav">
   <div class="container">
     <a class="navbar-brand js-scroll-trigger" href="{% url "home" %}"><img src="../../static/img/quietsharenav.png" width="150px" /></a>
 {% endblock nav %}
 
-{% block content %}
+{% block upload-nav %}
+<li class="nav-item">
+ <a class="nav-link js-scroll-trigger" href="{% url "home" %}">Upload</a>
+</li>
+{% endblock upload-nav %}
 
+
+{% block content %}
 <!-- Services Section -->
+<section>
+  <div>
+    <p>
+    </p>
+  </div>
+</section>
+
+
 {% include "accounts/form_snippet.html" with form_title="Sign Up" %}
 
 {% endblock content %}

@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django import forms
+from django.forms import ModelForm, PasswordInput
 
 from apps.accounts.forms import UserEditForm, SignupForm
 from apps.accounts.models import User
@@ -34,12 +35,16 @@ def log_out(request):
     return redirect('/')
 
 
+def save(self, *args, **kwargs):
+    self.crew_password = make_password(self.crew_password)
+    super(Crew, self).save(*args, **kwargs)
 
 def sign_up(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
+            password = forms.CharField(widget=forms.PasswordInput)
             user.set_password(form.cleaned_data['password'])
             user.save()
 

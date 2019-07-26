@@ -33,8 +33,7 @@
 
   <!-- Navigation -->
 {% block nav %}
-  <!-- <div class="container">
-    <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="../../static/img/quietsharenav.png" width="150px" /></a> -->
+
     {% endblock nav %}
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -42,12 +41,13 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto my-2 my-lg-0">
 
+        {% block upload-nav %}
+
+       {% endblock upload-nav %}
+
         {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/{{ user.username }}/">Hello, {{ user }}!</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{% url "home" %}">Upload</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{% url "logout" %}">Log Out</a>
