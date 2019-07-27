@@ -4343,6 +4343,13 @@ filter:none;
 
 }
 
+@media only screen and (max-width: 991.98px) {
+  .lrg-logo {
+    -webkit-filter:none;
+filter:none;
+  }
+}
+
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
