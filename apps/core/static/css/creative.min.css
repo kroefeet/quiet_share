@@ -57,6 +57,13 @@ filter:none;
 
 }
 
+@media only screen and (max-width: 991.98px) {
+  .lrg-logo {
+    -webkit-filter:none;
+filter:none;
+  }
+}
+
  .dashboard{
 
         background-color: #27b7d7;
