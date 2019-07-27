@@ -4331,6 +4331,18 @@ input[type="button"].btn-block {
   list-style: none;
 }
 
+.sml-logo {
+-webkit-filter:none;
+filter:none;
+}
+
+.lrg-logo{
+
+  -webkit-filter:brightness(5);
+  filter:brightness(5);
+
+}
+
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
